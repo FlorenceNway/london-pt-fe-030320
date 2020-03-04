@@ -15,7 +15,7 @@ let fruits;
 const targetMatchesCoercedUserValue = target == userValue;
 const targetMatchesUserValue = target === userValue;
 
-const passwordMatchesConfirmation = targetMatchesUserValue;
+const passwordMatchesConfirmation = password === passwordConfirmation;
 
 if(!passwordMatchesConfirmation) {
     passwordMessage = "Oops, your password and confirmation do not match!"
