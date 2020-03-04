@@ -4,7 +4,6 @@ const userValue = "15";
 const password = "JSisKool888";
 const passwordConfirmation = "JSisCool888";
 
-let passwordMatchesConfirmation;
 let passwordMessage;
 
 const sortOrder = "ALPHABETICAL";
@@ -16,9 +15,9 @@ let fruits;
 const targetMatchesCoercedUserValue = target == userValue;
 const targetMatchesUserValue = target === userValue;
 
-passwordMatchesConfirmation = targetMatchesUserValue;
+const passwordMatchesConfirmation = targetMatchesUserValue;
 
-if(passwordMatchesConfirmation == false) {
+if(!passwordMatchesConfirmation) {
     passwordMessage = "Oops, your password and confirmation do not match!"
 }
 
