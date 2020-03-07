@@ -1,8 +1,12 @@
 global.console = {
 	log: jest.fn(),
 	info: jest.fn(),
-	error: jest.fn()
+	error: jest.fn(),
+	warn: jest.fn()
+
 };
+
+global.alert = jest.fn()
 
 // Exercise 1
 describe("myFavoriteAnimal", () => {
@@ -49,7 +53,7 @@ describe("myAnimalWithError", () => {
 describe("myCity", () => {
 	test("myCity is declared and alert been called", () => {
 		myCity();
-
+		
 		expect(global.alert).toHaveBeenCalled();
 	});
 });
