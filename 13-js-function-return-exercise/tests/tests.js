@@ -28,21 +28,21 @@ describe("minNumber", () => {
 describe("randomNumber", () => {
 
 	test("should return random number", () => {
-		const randomNum = randomNumber();
+		const number = randomNumber();
 
-		expect(randomNum !== randomNumber()).toBeTruthy();
+		expect(number !== randomNumber()).toBeTruthy();
 	});
 
 	test("should return number between 1 and 10", () => {
-		const randomNum = randomNumber();
+		const number = randomNumber();
 
-		expect(randomNum > 0 && randomNum <= 10).toBeTruthy();
+		expect(number > 0 && number <= 10).toBeTruthy();
 	});
 
 	test("returned number should be integer", () => {
-		const randomNum = randomNumber();
+		const number = randomNumber();
 
-		expect(randomNum === Math.floor(randomNum)).toBeTruthy();
+		expect(number === Math.floor(number)).toBeTruthy();
 	});
 });
 
