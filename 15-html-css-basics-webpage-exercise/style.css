@@ -4,11 +4,14 @@
 }
 h1{
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin: 30 0 10 0;
+    font-weight: 200;
 }
 
 h3 {
     margin-bottom: 30px;
+    font-weight: 200;
+    margin-bottom : 30px;
 }
 
 h1, h3, img, figcaption{
@@ -27,11 +30,11 @@ figcaption {
 
 p {
     font-family: Caudex;
-    margin: 20 60;
+    margin: 20 170;
     /* margin: auto; */
 }
 
 p:first-child {
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
