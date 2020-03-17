@@ -178,18 +178,25 @@ li a:hover::after {
 
 
 .cards {
-    display: flex;
-    margin: 0 auto;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-    width: calc(100% - 300px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 100px;
 }
 
-.small-card-wrapper{
+.small-card-wrapper {
     background-color: #fff;
     box-shadow: 15px 10px 15px  #bdb9b9;
     width: 250px;
+}
+
+.small-card-wrapper:nth-child(1) {
+    margin: auto 0 0 auto;
+}
+.small-card-wrapper:nth-child(2) {
     margin: 0 auto;
+}
+.small-card-wrapper:nth-child(3) {
+    margin: 0 auto auto 0;
 }
 
 .small-card{
