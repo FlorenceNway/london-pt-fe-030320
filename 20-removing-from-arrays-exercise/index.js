@@ -3,6 +3,7 @@
  * and assign to it ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall"]
  */
 const carBrands = ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall"]
+
 /**
  * Exercise 1
  *
@@ -11,6 +12,7 @@ const carBrands = ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall"]
  * * PS: console.log() the result to see the difference
  */
 carBrands.pop()
+
 /**
  * Exercise 2
  *
@@ -19,6 +21,7 @@ carBrands.pop()
  * * PS: console.log() the result to see the difference
  */
 carBrands.shift()
+
 /**
  * Exercise 3
  *
@@ -32,6 +35,7 @@ function findVaux(car) {
 }
 const index = carBrands.findIndex(findVaux)
 delete carBrands[index]
+
 /**
  * Exercise 4
  *
