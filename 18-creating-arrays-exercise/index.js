@@ -65,7 +65,6 @@ console.log(numbers)
  */
 const first4DigitIndex = numbers.indexOf(4);
 
-
  
 /**
  * Exercise 7
@@ -73,8 +72,8 @@ const first4DigitIndex = numbers.indexOf(4);
  * Create variable "last4DigitIndex" and from "numbers"
  * find index of last instance of digit 4
  */
-
 const last4DigitIndex = numbers.lastIndexOf(4);
+
 /**
  * Exercise 8
  *
