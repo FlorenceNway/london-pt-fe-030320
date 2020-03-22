@@ -6,6 +6,7 @@
  *
  * PS: use console.log() to see the result
  */
+const user = {firstName:'Flo', lastName:'Nway', age:25}
 
 /**
  * Exercise 2
@@ -15,6 +16,16 @@
  *
  * PS: use console.log() to see the result
  */
+const allTypes = {
+    Name: 'flo', 
+    Number: 5, 
+    food: ['burger', 'fried seafood rice' ], 
+    favourite:{animal:'cat', exercise:'yoga'},
+    funct : function () {
+        console.log('this is function')
+    },
+    lazy: false,
+}
 
 /**
  * Exercise 3
@@ -25,3 +36,11 @@
  *
  * PS: use console.log() to see the result
  */
+
+ function createMovieObject(name, rating, ticketPrice) {
+     const movieObj = {};
+     movieObj['name'] = name;
+     movieObj['rating'] = rating;
+     movieObj['ticketPrice'] = ticketPrice;
+    return movieObj;
+ }
