@@ -96,5 +96,12 @@ function getParentFullName(parentType) {
  * * PS: use console.log() to see the result
  */
 function getUserData(prop) {
-	return user[prop];
+	if(user[prop]) {
+		return user[prop];
+	}
+	else {
+		return "prop name doesn't exist";
+	}
+	
 }
+
