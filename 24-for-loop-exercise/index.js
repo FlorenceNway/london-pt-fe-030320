@@ -67,9 +67,9 @@ function addIndex() {
         
         plusindex = 0;
     }  
-    return addIndex;
+    return addindex;
 }
-addIndex()
+console.log(addIndex())
 
 const forLowestNumber = [5, 234, 96, 34, -34, 0, 23]; // DON'T TOUCH THIS LINE :)
 /**
