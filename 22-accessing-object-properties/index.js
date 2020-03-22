@@ -28,6 +28,7 @@ const user = {
  *
  * PS: use console.log() to see the result
  */
+const userFirstName = user.firstName;
 
 /**
  * Exercise 2
@@ -38,6 +39,7 @@ const user = {
  *
  * PS: use console.log() to see the result
  */
+const favoriteMovie = user.favoriteMovies[0]
 
 /**
  * Exercise 3
@@ -47,6 +49,7 @@ const user = {
  *
  * PS: use console.log() to see the result
  */
+const userFullName = `${user.firstName} ${user.lastName}`
 
 /**
  * Exercise 4
@@ -56,6 +59,9 @@ const user = {
  *
  * PS: use console.log() to see the result
  */
+function getFullName() {
+	return userFullName;
+}
 
 /**
  * Exercise 5
@@ -65,6 +71,7 @@ const user = {
  *
  * PS: use console.log() to see the result
  */
+const mothersFirstName = user.parents.mother.firstName
 
 /**
  * Exercise 6
@@ -75,6 +82,10 @@ const user = {
  *
  * PS: use console.log() to see the result
  */
+function getParentFullName(parentType) {
+	return `${user.parents[parentType].firstName} ${user.parents[parentType].lastName}`
+}
+
 
 /**
  * Exercise 7
@@ -84,3 +95,6 @@ const user = {
  *
  * * PS: use console.log() to see the result
  */
+function getUserData(prop) {
+	return user[prop];
+}
