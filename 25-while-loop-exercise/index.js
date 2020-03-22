@@ -48,9 +48,7 @@ function rulerConstructor() {
     while( i <= 100) {
         ruler.push(i);
         i += 10;
-    }
-    console.log(ruler)
-    return ruler;
+    }  
 }
 
 // ==========================
