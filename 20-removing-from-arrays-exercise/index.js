@@ -1,8 +1,8 @@
 /**
  * create an array "carBrands"
- * and assign to it ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall"]
+ * and assign to it ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall", "Land Rover"]
  */
-const carBrands = ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall"]
+const carBrands = ["Mercedes", "Volvo", "BMW", "Reno", "Vauxhall", "Land Rover"]
 
 /**
  * Exercise 1
@@ -39,11 +39,10 @@ delete carBrands[index]
 /**
  * Exercise 4
  *
- * in "carBrands" replace Citroen with Rolls-Royce
+ * in "carBrands" replace BMW with Rolls-Royce
  *
  * * PS: console.log() the result to see the difference
  */
-carBrands.push('Citroen')
-console.log(carBrands)
-const citroenIndex = carBrands.indexOf('Citroen')
+
+const citroenIndex = carBrands.indexOf('BMW')
 carBrands[citroenIndex] = 'Rolls-Royce'
