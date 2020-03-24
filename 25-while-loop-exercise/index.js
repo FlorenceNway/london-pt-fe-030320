@@ -61,9 +61,13 @@ function rulerConstructor() {
  * Without using an if statement!
  */
 function partyPadding(guests) {
-    let counter = 5 - guests.length;
+    //let counter = 5 - guests.length;
    
-    for(let i = 0; i < counter; i++) {
+    // for(let i = 0; i < counter; i++) {
+    //     guests.push('Neighbour')
+    // }
+
+    while(guests.length < 5) {
         guests.push('Neighbour')
     }
     
