@@ -12,8 +12,13 @@
  */
 function getIntegersOnly(mixArr) {
     let integerArr = [];
+    // for(let item of mixArr) {
+    //     if(typeof(item) === "number") {
+    //         integerArr.push(item);
+    //     }
+    // }
     for(let item of mixArr) {
-        if(typeof(item) === "number") {
+        if(Number.isInteger(item)) {
             integerArr.push(item);
         }
     }
