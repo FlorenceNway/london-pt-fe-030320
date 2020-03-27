@@ -1,6 +1,6 @@
 const myName = "John"; // SET YOUR NAME
 
-const visitors = ["Alex", "Mike", "Sam"]; // Add at least 5 names
+const visitors = ["Alex", "Mike", "Sam", "Andy", "Max"]; // Add at least 5 names
 
 /**
  * Exercise 1
