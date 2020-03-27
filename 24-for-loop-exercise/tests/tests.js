@@ -50,21 +50,10 @@ describe("total", () => {
 });
 
 // Exercise 4
-<<<<<<< HEAD
 test("array should be modified", () => {
 	addIndex();
 
 	expect(addIndex()).toEqual([6, 3, 18, 26, 88, 26, 15, 10]);
-=======
-describe("addIndex", () => {
-	test("addIndex should be declared", () => {
-		expect(typeof addIndex).toEqual("function");
-	});
-
-	test("array should be modified", () => {
-		expect(addIndex()).toEqual([6, 3, 18, 26, 88, 26, 15, 10]);
-	});
->>>>>>> d3bd67182d639c3d1b54d6b0058268612177574a
 });
 
 // Exercise 5
