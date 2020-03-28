@@ -25,6 +25,13 @@
  * and with forEach log every element from your array
  * use {forEachCallback} as a callback function for forEach
  */
+forEachCallback = element => {
+  console.log(element);
+};
+
+logAllWithExternalCallback = arr => {
+  arr.forEach(forEachCallback);
+};
 
 /* =========================== */
 /* anonymous callbacks version */
@@ -35,6 +42,11 @@
  * do same thing as {logAllWithExternalCallback} but with
  * anonymous callback
  */
+logAllWithAnonymousCallback = arr => {
+  arr.forEach(arrItem => {
+    console.log(arrItem);
+  });
+};
 
 /**
  * Exercise 2
@@ -48,6 +60,15 @@
  *
  * Ex: dividableBy3([3,7,9,11]) => return [3,9]
  */
+dividableBy3 = numbers => {
+  let filterNumbers = [];
+  numbers.forEach(number => {
+    if (number % 3 == 0) {
+      filterNumbers.push(number);
+    }
+  });
+  return filterNumbers;
+};
 
 /**
  * Exercise 3
@@ -56,6 +77,15 @@
  *
  * Use forEach to loop through the array.
  */
+oddNumbersSum = numbers => {
+  let sum = 0;
+  numbers.forEach(number => {
+    if (number % 2 == 1) {
+      sum += number;
+    }
+  });
+  return sum;
+};
 
 /**
  * Exercise 4
@@ -67,3 +97,12 @@
  *
  * Ex: ["cat", 5, "dog"] => 6
  */
+totalLength = mixArr => {
+  let totalLength = 0;
+  mixArr.forEach(element => {
+    if (typeof element == "string") {
+      totalLength += element.length;
+    }
+  });
+  return totalLength;
+};
