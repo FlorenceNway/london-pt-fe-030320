@@ -5,10 +5,10 @@ const readlineSync = require("readline-sync");
  *
  * ask user for a name and assign a response to variable {name}
  */
-//let name = readlineSync.question('May I have your name? ');
+let name = readlineSync.question('May I have your name? ');
 
 //===== DO NOT TOUCH THIS BLOCK =====
-//console.log(`Hi ${name}!`);
+console.log(`Hi ${name}!`);
 console.log("=====================");
 console.log(`Let me do math for you!`);
 console.log("=====================");
