@@ -3,6 +3,7 @@
  *
  * Add Chalk(https://github.com/chalk/chalk) to your project
  */
+const chalk = require('chalk');
 
 /**
  * =============================================
@@ -19,7 +20,10 @@
  * Call this function and run "node index.js" in a terminal
  * to see the result
  */
-
+renderBlueText = () => {
+    console.log(chalk.blue('Hello world!'));
+}
+//renderBlueText()
 /**
  * Exercise 3
  *
@@ -28,7 +32,10 @@
  * Call this function and run "node index.js" in a terminal
  * to see the result
  */
-
+inversedColourText = (str) => {
+    console.log(chalk.inverse(str))
+}
+//inversedColourText('Hello!')
 /**
  * Exercise 4
  *
@@ -36,3 +43,7 @@
  * and style each by adding red background colour and setting
  * font colour to white.
  */
+styledText = strings => {
+   return chalk.bgRed.white(strings)    
+}
+//styledText(['hello ', 'world'])
