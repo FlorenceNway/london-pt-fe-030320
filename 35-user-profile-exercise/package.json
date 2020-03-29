@@ -20,5 +20,9 @@
     "concat": "^1.0.3",
     "husky": "^4.2.3",
     "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "readline-sync": "^1.4.10"
   }
 }
