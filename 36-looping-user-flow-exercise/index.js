@@ -44,6 +44,7 @@ let menu = readlineSync.keyInSelect(mainmenu,`Pick a category`, {cancel: 'Exit'}
 
 if(menu == -1) {
 	exit();
+	
 }else {
 	switch(menu) {
 		case 0 : Books()
@@ -73,10 +74,8 @@ function selectedCategories(category, key) {
  */
 function Books() {
 	user['book'] = readlineSync.keyInSelect(books,`Pick a book you want to read ?`,{cancel: 'Go to main menu'})
-	console.log(typeof user['book'])
 	
 	if(user['book'] === -1) {
-		console.log('here')
 		mainMenu()
 	} else {
 		selectedCategories(books, 'book')
@@ -98,8 +97,8 @@ function Movies() {
 	user['movie'] = readlineSync.keyInSelect(movies,`Pick a movie you want to watch ?`,{cancel: 'Go to main menu'})
 	
 	if(user['movie'] === -1) {
-		console.log('here')
 		mainMenu()
+
 	} else {
 		selectedCategories(movies, 'movie')
 	}
@@ -119,8 +118,8 @@ function Destinations() {
 	user['nextTrip'] = readlineSync.keyInSelect(countries,`Pick a country you want to travel ?`,{cancel: 'Go to main menu'})
 	
 	if(user['Next destination'] === -1) {
-		console.log('here')
 		mainMenu()
+
 	} else {
 		selectedCategories(countries, 'nextTrip')
 	}
@@ -137,6 +136,7 @@ function mainMenu() {
 	menu = readlineSync.keyInSelect(mainmenu,`Pick a category`, {cancel: 'Exit'})
 	if(menu == -1) {
 		exit();
+
 	}else {
 		switch(menu) {
 			case 0 : Books()
@@ -148,6 +148,7 @@ function mainMenu() {
 
 function exit() {
 	console.log('Your choices are as follow: ')
+
 	for(key in selectedItems) {
 		if(selectedItems.hasOwnProperty(key)){
 			console.log(key ,': ',selectedItems[key])
