@@ -8,6 +8,11 @@
  * passed each element and the index.
  *
  */
+const forEach = (array,callback) => {
+    for(let item of array) {
+        callback(item, array.indexOf(item))
+    }
+}
 
 /**
  * Exercise #2
@@ -22,6 +27,14 @@
  * time the callback was invoked.
  *
  */
+const map = (array, callback) => {
+    const newArray = []
+    for(let element of array) {
+        let result = callback(element, array.indexOf(element))
+        newArray.push(result)
+    }
+    return newArray
+}
 
 /**
  * Exercise #3
@@ -36,6 +49,16 @@
  * callback returned a truthy value.
  *
  */
+const filter = (array, callback) => {
+    const newArray = []
+    for(let element of array) {
+        let result = callback(element, array.indexOf(element))
+        if(result) {
+            newArray.push(element)
+        }   
+    }
+    return newArray
+}
 
 /**
  * Exercise #4
@@ -50,6 +73,17 @@
  * truthy value.
  *
  */
+const find = (array, callback) => {
+    let firstElment;
+    for(let element of array) {
+        let result = callback(element, array.indexOf(element))
+        if(result) {
+           firstElment = element
+           break;
+        }   
+    }
+    return firstElment
+}
 
 /**
  * Exercise #5
@@ -64,6 +98,18 @@
  * callback returns a truthy value.
  *
  */
+const findIndex = (array, callback) => {
+    let firstElmentIndex;
+    for(let element of array) {
+        let result = callback(element, array.indexOf(element))
+        if(result) {
+           firstElmentIndex = array.indexOf(element)
+           break;
+        }   
+    }
+    return firstElmentIndex
+}
+
 
 /**
  * Exercise #6
@@ -79,6 +125,17 @@
  * a truthy value.
  *
  */
+const every = (array, callback) => {
+    let allTruthy = true;
+    for(let element of array) {
+        let result = callback(element, array.indexOf(element))
+        if(!result) {
+            allTruthy = false
+            break;
+        }
+    }
+    return allTruthy
+}
 
 /**
  * Exercise #7
@@ -94,6 +151,17 @@
  * a truthy value.
  *
  */
+const some = (array, callback) => {
+    let someTruthy = false;
+    for(let element of array) {
+        let result = callback(element, array.indexOf(element))
+        if(result) {
+            someTruthy = true
+            break;
+        }
+    }
+    return someTruthy
+}
 
 /**
  * Exercise #8
@@ -116,3 +184,11 @@
  * value.
  *
  */
+const reduce = (array, callback, initialValue = 0) => {
+    let accumulator = initialValue;
+    
+    for(let element of array) {
+        accumulator = callback(accumulator, element, array.indexOf(element))   
+    }
+    return accumulator
+}
