@@ -40,19 +40,7 @@ const countries = [
 const user = {}
 const mainmenu = ['Books', 'Movies', 'Next Destination']
 
-let menu = readlineSync.keyInSelect(mainmenu,`Pick a category`, {cancel: 'Exit'})
-
-if(menu == -1) {
-	exit();
-	
-}else {
-	switch(menu) {
-		case 0 : Books()
-		case 1 : Movies()
-		case 2 : Destinations()
-		default: exit()
-	}
-}
+mainMenu()
 
 
 function selectedCategories(category, key) {
@@ -117,7 +105,7 @@ function Movies() {
 function Destinations() {
 	user['nextTrip'] = readlineSync.keyInSelect(countries,`Pick a country you want to travel ?`,{cancel: 'Go to main menu'})
 	
-	if(user['Next destination'] === -1) {
+	if(user['nextTrip'] === -1) {
 		mainMenu()
 
 	} else {
@@ -133,7 +121,7 @@ function Destinations() {
  */
 
 function mainMenu() {
-	menu = readlineSync.keyInSelect(mainmenu,`Pick a category`, {cancel: 'Exit'})
+	let menu = readlineSync.keyInSelect(mainmenu,`Pick a category`, {cancel: 'Exit'})
 	if(menu == -1) {
 		exit();
 
@@ -142,6 +130,7 @@ function mainMenu() {
 			case 0 : Books()
 			case 1 : Movies()
 			case 2 : Destinations()
+			default: exit()
 		}
 	}
 }
