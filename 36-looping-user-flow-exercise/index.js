@@ -122,17 +122,27 @@ function Destinations() {
 
 function mainMenu() {
 	let menu = readlineSync.keyInSelect(mainmenu,`Pick a category`, {cancel: 'Exit'})
-	if(menu == -1) {
-		exit();
 
-	}else {
-		switch(menu) {
-			case 0 : Books()
-			case 1 : Movies()
-			case 2 : Destinations()
-			default: exit()
+		switch (menu) {
+		  case 0:
+			Books();
+			break;
+		  case 1:
+			Movies();
+			break;
+		  case 2:
+			Destinations();
+			break;
 		}
-	}
+
+		if (
+		  menu !== -1 &&
+		  (!selectedItems.movie || !selectedItems.book || !selectedItems.nextTrip)
+		) {
+		  mainMenu();
+		} else {
+		  exit();
+		}
 }
 
 function exit() {
