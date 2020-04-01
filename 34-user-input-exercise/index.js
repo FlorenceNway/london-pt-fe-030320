@@ -53,9 +53,9 @@ while (!symbols.includes(selectedSymbol)) {
  */
 let number1 = readlineSync.keyIn("Please enter the first number: ");
 
-let isInteger = Number.isInteger(parseInt(number1)); //(number1 != parseInt(number1)
+//let isInteger = Number.isInteger(parseInt(number1)); //(number1 != parseInt(number1)
 
-while (!isInteger) {
+while (number1 != parseInt(number1)) {
   console.log("Please enter a valid number");
   number1 = readlineSync.keyIn("Please enter the first number: ");
 }
@@ -69,9 +69,9 @@ while (!isInteger) {
  * you get a number
  */
 let number2 = readlineSync.keyIn("Please enter the second number: ");
-isInteger = Number.isInteger(parseInt(number2)); //(number2 != parseInt(number2)
+//isInteger = Number.isInteger(parseInt(number2)); //(number2 != parseInt(number2)
 
-while (!isInteger) {
+while (number2 != parseInt(number2)) {
   console.log("Please enter a valid number");
   number2 = readlineSync.keyIn("Please enter the second number: ");
 }
