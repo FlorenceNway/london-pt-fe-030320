@@ -2,7 +2,7 @@ const {
 	fireEvent
 } = require("@testing-library/dom/dist/@testing-library/dom.umd.js");
 
-globalThis.console = {
+global.console = {
 	log: jest.fn()
 };
 
