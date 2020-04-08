@@ -86,7 +86,7 @@ const clickElsewhere = ()=> {
  * and then press any key
  */
 const pressAKey = () => {
-    const input = document.querySelector(".input input");
+
     input.addEventListener("keydown", ()=>{
         console.log("User pressed the key inside the input box");
 
@@ -102,6 +102,7 @@ const pressAKey = () => {
  * and then press any key and release it
  */
 const releaseAKey = () => {
+    
     input.addEventListener("keyup", ()=> {
         console.log("User released the key");
     })
