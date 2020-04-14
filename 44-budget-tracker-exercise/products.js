@@ -31,3 +31,5 @@ const products = [
     max_quantity: 2,
   },
 ];
+
+localStorage.products = JSON.stringify(products)
