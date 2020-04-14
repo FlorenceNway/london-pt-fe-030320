@@ -20,107 +20,65 @@ const createDOMElement = (tagname) => {
  */
 
 const createTimerEl = (id) => {
+
     const timer_div = createDOMElement('div')
-    timer_div.classList.add ('timer')
-    timer_div.classList.add (`timer_${id}`)
+    timer_div.classList.add('timer', `timer_${id}`)
 
-    timersContainerEl.appendChild(timer_div)
-
-    const remove = createDOMElement('div')
-    remove.id = `remove_${id}`
-    remove.className = 'remove'
+    timer_div.innerHTML = `
+        <div class="remove"></div>
+		<h3>0 <span>00</span></h3>
+		<div class="btn">
+			<button class="reset">Reset</button>
+			<button class="stop">Stop</button>
+		</div>
+    `
     
+    id = setInterval(startTimer, 100, timer_div)
 
-    const h3 = createDOMElement('h3')
-    h3.className = `h3_${id}`
-    h3.innerHTML = 0 +' '
-    const span = createDOMElement('span')
-    span.innerHTML = 0
-    h3.appendChild(span)
+    const resetBtn = timer_div.querySelector('.reset');
+    const stopBtn = timer_div.querySelector('.stop');
+    const removeBtn = timer_div.querySelector('.remove')
+
+    removeBtn.addEventListener('click',() => {
+        timer_div.remove()
+    })
     
+    resetBtn.addEventListener('click',() => {
+        counter = 0;
+        id = setInterval(startTimer, 10, timer_div)
+    })
 
-    timer_div.append(remove)
-    timer_div.append(h3)
-
-    const btn_div = createDOMElement('div')
-    btn_div.className = 'btn'
-
-    const resetBtn = createDOMElement('button')
-    resetBtn.className = 'reset'
-    resetBtn.id = `resetBtn_${id}`
-    resetBtn.innerText = 'Reset'
-    btn_div.append(resetBtn)
-
-    const stopBtn = createDOMElement('button')
-    stopBtn.className = 'stop'
-    stopBtn.id = `stopBtn_${id}`
-    stopBtn.innerText = 'Stop'
-    btn_div.append(stopBtn)
-
-    timer_div.append(btn_div)
-
+    stopBtn.addEventListener('click', () => {
+        clearInterval(id)
+    })
+    
     return timer_div
-   
 }
 
-let timerid;
+
 addCounterEl.addEventListener('click', (e) => {
     const totalTimers = document.querySelectorAll('.timer')
     if(totalTimers.length < 5) {
         timersCount = timersCount + 1;
-        createTimerEl(timersCount) 
-        
-        timerid = setInterval(startTimer,10,timersCount)
+        const newTimer = createTimerEl(timersCount) 
+        timersContainerEl.appendChild(newTimer)
     }
-
 })
 
 
 let counter = 0;
+const startTimer = (timer_div) => { 
 
-const startTimer = (id) => {  
     counter = counter + 1; 
 
     const milisec = counter % 100
     const sec = Math.floor(counter / 100)
 
-    const h3 = document.querySelector(`.h3_${id}`)
+    const h3 = timer_div.querySelector(`h3`)
     h3.innerHTML = `${sec} <span>${milisec}</span>`
-
-    const stopButton = document.querySelector(`#stopBtn_${id}`)
-    stopButton.addEventListener('click', (e) => {
-        stop()
-    })
-
-    const resetButton = document.querySelector(`#resetBtn_${id}`)
-    resetButton.addEventListener('click', (e) => {
-        reset(id)
-    })
-
-    const timerDiv = document.querySelector(`.timer_${id}`)
-    const removeBtn = document.querySelector(`#remove_${id}`)
-    removeBtn.addEventListener('click',() => {
-        timerDiv.remove()
-    })
 }
 
 
-const stop = () => { 
-    clearInterval(timerid) 
-}
-
-
-const reset = (id) => {
-    clearInterval(timerid)
-    counter = 0;
-    timerid = setInterval(startTimer, 10, id)
-}
-
-
-// const remove = (parentEl, childdiv) => {
-//     clearInterval(timerid)
-//     parentEl.removeChild(childdiv)
-// }
 
 
 
