@@ -23,6 +23,10 @@ const createTimerEl = (id) => {
 
     const timer_div = createDOMElement('div')
     timer_div.classList.add('timer', `timer_${id}`)
+    timer_div.id = `time_${id}`
+    
+    // const timer_div = document.querySelector(`#time_${id}`)
+    //let Interval_id = timer_div.getAttribute('id')
 
     timer_div.innerHTML = `
         <div class="remove"></div>
@@ -32,44 +36,58 @@ const createTimerEl = (id) => {
 			<button class="stop">Stop</button>
 		</div>
     `
-    
-    id = setInterval(startTimer, 100, timer_div)
+   let counter = 0
+   const interval = setInterval(() => {
+       counter += 1
+        const milisec = counter % 100
+        const sec = Math.floor(counter / 100)
+
+        const h3 = timer_div.querySelector(`h3`)
+        h3.innerHTML = `${sec} <span>${milisec}</span>`
+
+   }, 10, timer_div)
 
     const resetBtn = timer_div.querySelector('.reset');
     const stopBtn = timer_div.querySelector('.stop');
     const removeBtn = timer_div.querySelector('.remove')
 
-    removeBtn.addEventListener('click',() => {
+    removeBtn.addEventListener('click', () => {
         timer_div.remove()
     })
-    
-    resetBtn.addEventListener('click',() => {
-        counter = 0;
-        id = setInterval(startTimer, 10, timer_div)
+
+    resetBtn.addEventListener('click', () => {
+        counter = 0
     })
 
     stopBtn.addEventListener('click', () => {
-        clearInterval(id)
+        handleStop(interval)
     })
-    
+
     return timer_div
 }
 
 
+
+const handleStop = (interval) => {
+  
+    clearInterval(interval)
+}
+
+
+
 addCounterEl.addEventListener('click', (e) => {
     const totalTimers = document.querySelectorAll('.timer')
-    if(totalTimers.length < 5) {
+    if (totalTimers.length < 5) {
         timersCount = timersCount + 1;
-        const newTimer = createTimerEl(timersCount) 
+        const newTimer = createTimerEl(timersCount)
         timersContainerEl.appendChild(newTimer)
     }
 })
 
 
-let counter = 0;
-const startTimer = (timer_div) => { 
+const startTimer = (timer_div) => {
 
-    counter = counter + 1; 
+    counter = counter + 1;
 
     const milisec = counter % 100
     const sec = Math.floor(counter / 100)
@@ -77,10 +95,3 @@ const startTimer = (timer_div) => {
     const h3 = timer_div.querySelector(`h3`)
     h3.innerHTML = `${sec} <span>${milisec}</span>`
 }
-
-
-
-
-
-
-
