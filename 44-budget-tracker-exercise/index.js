@@ -7,21 +7,26 @@ const createProduct = () => {
 
     product_list.forEach(product => {
 
-        productsContainer.innerHTML += 
-        `<div>
-            <img src=${product.img} />
-            <h3>${product.name}</h3>
-            <p>${product.price}</p>
-            <select>
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-            </select>
-        </div>`
+        const product_div = `<img src=${product.img} />
+                            <h3>${product.name}</h3>
+                            <p>${product.price}</p> `
 
+        const div = document.createElement('div')
+        
+        const select = document.createElement('select')
+        for(let quantity = 0; quantity < product.max_quantity; quantity++) {
+            const option = document.createElement('option')
+            option.value = quantity;
+            option.innerText = quantity;
+            select.append(option)
+        } 
+        
+        div.innerHTML = product_div
+        div.append(select)
+
+        productsContainer.append(div)
     })
-
-    
+     
 }
 
 createProduct()
