@@ -29,7 +29,7 @@ const createProduct = () => {
 
 
 let totalAmount = {};
-let click = 0;
+
 
 const selectQuantity = (id) => {
     const select = document.querySelector(`#select_${id}`)
