@@ -27,15 +27,21 @@ const createProduct = () => {
   });
 };
 
-const totalAmount = [];
+
+let totalAmount = {};
+let click = 0;
 
 const selectQuantity = (id) => {
     const select = document.querySelector(`#select_${id}`)
-    let quantity = select.value
+    const quantity = select.value
     let price = product_list[id - 1].price
+
     let each_total = calculateAmount(price ,quantity)
-    totalAmount.push(each_total)
-    displayBalance()
+    totalAmount[`${id}`] = each_total
+    
+    console.log(totalAmount)
+    total_spent()
+   
 }
 
 
@@ -43,15 +49,21 @@ const remaining_balance = 50
 
 const calculateAmount = (price , quantity) => {
     let each_total = price * quantity
-    return each_total
-    
+    return each_total   
 }
 
-const displayBalance = () => {
-    let sum = totalAmount.reduce((accumulator, currentval) => {
-        return accumulator += currentval
-    },0)
-   
+
+const total_spent = () => {
+    let sum = 0
+    for(let key in totalAmount) { 
+        sum += totalAmount[key]
+    }
+
+    displayBalance(sum)
+}
+
+
+const displayBalance = (sum) => {
     let balance = remaining_balance - sum
 
     const span = document.querySelector('#remaining span')
@@ -62,10 +74,18 @@ const displayBalance = () => {
         
         error_div.className = 'error'
         error_div.innerText = 'Not enough money left for that!'
-        main_div.append(error_div)
-        
+        const is_error_exist = document.querySelector('.error')
+
+        if(!is_error_exist) {
+            main_div.append(error_div)
+        }
+
     }else if(sum < remaining_balance) {
-        error_div.remove()
+        const is_error_exist = document.querySelector('.error')
+        if(is_error_exist) {
+            is_error_exist.remove()
+        }
+        
     }
     span.innerText = balance.toFixed(2)
 }
