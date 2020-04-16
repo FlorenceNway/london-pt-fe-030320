@@ -13,7 +13,7 @@ const createProduct = () => {
     select.id = 'select_' + product.id
     select.setAttribute('onchange',`selectQuantity(${product.id})`)
 
-    for (let quantity = 0; quantity < product.max_quantity; quantity++) {
+    for (let quantity = 0; quantity < product.max_quantity + 1; quantity++) {
       const option = document.createElement("option");
       option.value = quantity;
       option.innerText = quantity;
@@ -37,11 +37,9 @@ const selectQuantity = (id) => {
     let price = product_list[id - 1].price
 
     let each_total = calculateAmount(price ,quantity)
-    totalAmount[`${id}`] = each_total
+    totalAmount[id] = each_total
     
-    console.log(totalAmount)
     total_spent()
-   
 }
 
 
@@ -68,25 +66,23 @@ const displayBalance = (sum) => {
 
     const span = document.querySelector('#remaining span')
     const error_div = document.createElement('div')
+    const main_div = document.querySelector('#cart')
+    error_div.className = 'error'
+    error_div.innerText = 'Not enough money left for that!'
 
     if(sum > remaining_balance) {
-        const main_div = document.querySelector('#cart')
-        
-        error_div.className = 'error'
-        error_div.innerText = 'Not enough money left for that!'
+        main_div.append(error_div)
         const is_error_exist = document.querySelector('.error')
-
-        if(!is_error_exist) {
-            main_div.append(error_div)
-        }
-
-    }else if(sum < remaining_balance) {
-        const is_error_exist = document.querySelector('.error')
-        if(is_error_exist) {
+        setTimeout(()=>{
             is_error_exist.remove()
-        }
-        
+        },3000) 
     }
+
+    // while(balance < 0) {
+    //     i = totalAmount.length - 1
+    //     balance = balance - totalAmount[i]
+    //     i--
+    // }
     span.innerText = balance.toFixed(2)
 }
 
