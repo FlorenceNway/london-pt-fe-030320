@@ -11,7 +11,20 @@
  *
  * Ex: generateFibonacci(5) // return [0, 1, 1, 2, 3];
  */
-
+const generateFibonacci = (lenghtOfArray) => {
+    const result = [0]
+        for(let i = 0; i < lenghtOfArray - 1 ; i++) {
+            if(i == 0) {
+                result.push(1)
+            }
+            else {
+                let sum = result[i-1] + result[i]
+                result.push(sum)
+            }
+        }
+    
+    return result
+}
 
 /**
  * Exercise 2
@@ -26,3 +39,15 @@
  * Ex: isPowerOf(27, 3) // return true;
  */
 
+const isPowerOf = (number, primeNumber) => {
+    let multiply = 1;
+    for(let i = 0 ; i < primeNumber; i++) {
+        multiply *= primeNumber
+    }
+
+    if(multiply == number) {
+        return true
+    }else {
+        return false
+    }
+}
