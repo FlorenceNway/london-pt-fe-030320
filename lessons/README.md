@@ -9,3 +9,7 @@
 [DOM Manipulation](https://youtu.be/BgoY0HTlk7c)
 
 [Events](https://youtu.be/sw8BdB-uMfM)
+
+[Algorithms and Testing](https://youtu.be/y347VU2Hbf8)
+
+[Project Features](https://youtu.be/BLW0poqnoXM)
