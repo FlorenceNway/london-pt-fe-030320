@@ -7,6 +7,8 @@ const input = document.querySelector("input");
 // run `npm install -g serve`
 // then run `serve ./` to serve your index page
 
+//********* I couldn't run this, I am getting error *********//
+
 /**
  * Exercise 1
  *
@@ -17,6 +19,25 @@ const input = document.querySelector("input");
  * in {result} element, otherwise render
  * `Request failed with status code: {errorCode}`
  */
+
+ const renderValidLink = (url) => {
+    result.innerHTML = 'Valid link! '
+    result.innerHTML += `<a href=${url} target='_blank'>${url}</a>`
+ }
+
+ const renderError = (errorCode) => {
+     result.innerText = `Request failed with status code: ${errorCode}`
+ }
+
+const getResponse = (url) => {
+    fetch(url).then((response) => {
+        if (response.ok) {
+            renderValidLink(url)
+        } else {
+            renderError(response.status);
+        }
+    });
+}
 
 /**
  * Description of the application:
@@ -31,3 +52,11 @@ const input = document.querySelector("input");
  * 5. When I focus on input, it should clear my input and hide
  * {result}
  */
+input.addEventListener('focus',(e) => {
+    e.target.value = ''
+    result.innerHTML = ''
+})
+
+form.addEventListener('submit', () => {
+    getResponse(input.value)
+})
