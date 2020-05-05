@@ -31,8 +31,8 @@ const input = document.querySelector("input");
      result.style.color = 'red'
  }
 
-const getResponse = (url) => {
-    fetch(url).then((response) => {
+const getResponse = async (url) => {
+    await fetch(url).then((response) => {
         if (response.ok) {
             renderValidLink(url)
         } else {
