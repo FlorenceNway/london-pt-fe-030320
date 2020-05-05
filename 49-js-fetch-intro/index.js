@@ -22,11 +22,13 @@ const input = document.querySelector("input");
 
  const renderValidLink = (url) => {
     result.innerHTML = 'Valid link! '
-    result.innerHTML += `<a href=${url} target='_blank'>${url}</a>`
+    result.style.color = 'green'
+    result.innerHTML += `<a href=${url} target='_blank'>Link</a>`
  }
 
  const renderError = (errorCode) => {
      result.innerText = `Request failed with status code: ${errorCode}`
+     result.style.color = 'red'
  }
 
 const getResponse = (url) => {
