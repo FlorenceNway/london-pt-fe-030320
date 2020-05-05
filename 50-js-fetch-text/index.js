@@ -1,3 +1,5 @@
+
+
 const form = document.querySelector("form");
 const result = document.querySelector(".result");
 const input = document.querySelector("input");
@@ -18,6 +20,24 @@ const input = document.querySelector("input");
  * string in {.result} element
  */
 
+const getResponse = async(url) => {
+    return await
+        fetch(url)
+        .then(response => response.text())
+        .then((text) => {
+            result.innerText = text
+        })
+    
+}
+
+input.addEventListener('focus', event => {
+    event.target.value = ''
+    result.innerText = ''
+})
+
+form.addEventListener('submit',() => {
+    getResponse(input.value)
+})
 
 /**
  * Description of the application:
