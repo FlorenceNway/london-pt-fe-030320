@@ -20,6 +20,13 @@ const ingredients = [
  * {ingredient} object
  *
  */
+const asyncCookIngredient = (ingredient) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(ingredient)
+    },ingredient.time)
+  })
+}
 
 
 /**
@@ -41,3 +48,24 @@ const ingredients = [
  * }
  *
  */
+
+
+const asyncCookMeal = async (ingredientsToCook) => {
+  let newObj = {
+    ingredientNames: [],
+    totalTime: 0,
+  };
+
+  const cookedIngredients = ingredientsToCook.map(
+    async (ingredient) => await asyncCookIngredient(ingredient)
+  );
+
+  await Promise.all(cookedIngredients).then((ingredients) => {
+    ingredients.forEach((ingredient) => {
+      newObj.ingredientNames.push(ingredient.name);
+      newObj.totalTime += ingredient.time;
+    });
+  });
+
+  return newObj;
+};
