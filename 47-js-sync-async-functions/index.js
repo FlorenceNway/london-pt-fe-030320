@@ -25,6 +25,17 @@ const syncCookIngredient = ({ name, time }) => {
  * After all the ingredients are cooked,
  * log the message "Soup is ready to serve"
  */
+// const ingredientsToCook = [
+//   { name: "carrot", time: 500 },
+//   { name: "potato", time: 1000 }
+// ]
+
+const syncCookMeal = (ingredientsToCook) => {
+  ingredientsToCook.forEach(ingredient => {
+    syncCookIngredient(ingredient)
+  })
+  console.log('Soup is ready to serve')
+}
 
 
 
@@ -42,6 +53,31 @@ const syncCookIngredient = ({ name, time }) => {
  * the name of the ingredient.
  *
  */
+// const ingredient = {name: 'potato', time: 1000}
+// const asyncCookIngredient = (ingredient) => {
+//    setTimeout(()=> {
+
+//     console.log(`Start cooking ${ingredient.name}`);
+
+//   },ingredient.time)
+
+//   console.log(`${ingredient.name} cooked!`)
+  
+// }
+
+const asyncCookIngredient = async (ingredient) => {
+  console.log(`Start cooking ${ingredient.name}`);
+  return await new Promise ((resolve,reject) => {
+
+    setTimeout(()=> {
+      console.log(`${ingredient.name} cooked!`)
+      resolve();
+      },ingredient.time)
+  })
+}
+
+
+
 
 /**
  * Exercise 3
@@ -54,3 +90,9 @@ const syncCookIngredient = ({ name, time }) => {
  * log the message "Soup is ready to serve"
  */
 
+const asyncCookMeal =  (ingredientsToCook) =>{
+  const ingredients = ingredientsToCook.map(async (ingredient) => {
+    await asyncCookIngredient(ingredient)
+  })
+  Promise.all(ingredients).then(() => console.log("Soup is ready to serve"))
+}
