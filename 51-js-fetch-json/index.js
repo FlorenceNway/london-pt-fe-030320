@@ -17,7 +17,10 @@ const input = document.querySelector("input");
  * When you get a response, return an array of facts.
  */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 313149d5869877fe032d44c9a1310cfabb3e670f
 
 /**
  * Description of the application:
@@ -26,4 +29,7 @@ const input = document.querySelector("input");
  * 1. click on a button "Get random facts"
  * 2. view 3 random facts in ".result" element
  */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 313149d5869877fe032d44c9a1310cfabb3e670f
