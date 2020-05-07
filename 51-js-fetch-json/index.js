@@ -33,7 +33,7 @@ const fetchData = async(url) => {
 	const data = await fetch(url)
 	.then((response) => response.json())
 
-	return data;
+	return data.all;
 }
 
 
@@ -61,7 +61,7 @@ button.addEventListener('click',async() => {
 	const random3Facts = []
 
 	let facts = await fetchData(url)
-	facts = facts.all
+	//facts = facts.all
 
 	for(let i = 1; i < 4; i++) {
 		let randomfact = facts[Math.floor(Math.random() * facts.length)]
