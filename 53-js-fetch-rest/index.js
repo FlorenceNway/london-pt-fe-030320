@@ -1,6 +1,6 @@
 // set base URL to your json server
 // Ex: http://localhost:3000
-const baseURL = "https://localhost:5000";
+const baseURL = "http://localhost:3000";
 /**
  * BEFORE YOU START:
  * 1. Run `npm install -g json-server`
@@ -19,8 +19,7 @@ const baseURL = "https://localhost:5000";
  * Note: test this function with an URL from your json-server API
  */
 const getComments = async () => {
-    const data = await fetch('http://localhost:3000/comments').then(response => response.json())
-    return data
+    return await fetch(`${baseURL}/comments`).then(response => response.json())
 }
 getComments()
 /**
@@ -44,7 +43,7 @@ const postComment = async (newComment) => {
         body: JSON.stringify(newComment)
       };
       
-   fetch("http://localhost:3000/comments", configObject)
+   return await fetch("http://localhost:3000/comments", configObject)
     .then((response) => {
         if(response.ok) {
             return response.json()
@@ -67,29 +66,27 @@ postComment({
  * and {newCommentBody} as arguments.
  *
  * It should send a patch request to update the comment in the database with
- * the newCommentBody as the new body value.
+ * the newCommentBody as the new body's value.
  *
  * This function should return the updated object if
  * successful, or "Oops we couldn't update that!" if not.
  *
  * Don't forget to handle errors.
  */
-const patchComment = async (patchComment) => {
+const patchComment = async (comment,patchComment) => {
     const configObject = {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(patchComment)
+        body: JSON.stringify({body:patchComment})
       };
       
-    fetch("http://localhost:3000/comments/2", configObject)
-    .then((response) => response )
-    .catch(error => console.log(`Oops we couldn't update that!`))
+    return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
+    .then((response) => response.json() )
+    .catch(error => `Oops we couldn't update that!`)
 }
-patchComment({
-        "body": "***** Replace Comment *****",
-})
+patchComment({id:2},"***** Replace Comment *****")
 
 
 /**
@@ -112,9 +109,9 @@ const putComment = async (putComment) => {
         body: JSON.stringify(putComment)
       };
       
-    fetch("http://localhost:3000/comments/2", configObject)
+      return await fetch("http://localhost:3000/comments/2", configObject)
     .then((response) => response )
-    .catch(error => console.log(`Oops we couldn't update that!`))
+    .catch(error => `Oops we couldn't update that!`)
 }
 putComment({
         "body": "***** Update PUT Comment to id2 *****",

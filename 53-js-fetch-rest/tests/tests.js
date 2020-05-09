@@ -29,7 +29,7 @@ describe("HTTP requests", () => {
 
     const newComments = await getComments();
     const newFirstComment = newComments[0];
-
+    console.log(firstComment,newFirstComment)
     expect(firstComment.body).not.toEqual(newFirstComment.body);
     expect(updated.body).toEqual(newFirstComment.body);
     expect(updated.body).toEqual("Update this comment");
