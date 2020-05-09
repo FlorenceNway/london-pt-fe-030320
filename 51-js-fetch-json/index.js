@@ -36,7 +36,6 @@ const fetchData = async(url) => {
 	return data.all;
 }
 
-
 /**
  * Description of the application:
  *
