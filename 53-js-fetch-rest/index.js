@@ -48,15 +48,15 @@ const postComment = async (newComment) => {
         if(response.ok) {
             return response.json()
         }else {
-            throw response
+            throw "Oops something went wrong!"
         }
     })
-    .catch(error => console.log('Oops something went wrong!'))
+    .catch(error => error)
 }
 
-postComment({
-    "body": "***** added new comment *****"
-})
+// postComment({
+//     "body": "***** added new comment *****"
+// })
 
 
 /**
@@ -73,7 +73,7 @@ postComment({
  *
  * Don't forget to handle errors.
  */
-const patchComment = async (comment,patchComment) => {
+const patchComment = async (commentObj, patchComment) => {
     const configObject = {
         method: "PATCH",
         headers: {
@@ -82,9 +82,15 @@ const patchComment = async (comment,patchComment) => {
         body: JSON.stringify({body:patchComment})
       };
       
-    return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
-    .then((response) => response.json() )
-    .catch(error => `Oops we couldn't update that!`)
+    return await fetch(`${baseURL}/comments/${commentObj.id}`, configObject)
+    .then((response) => {
+        if(response.ok) {
+            return response.json()
+        }else {
+            throw "Oops we couldn't update that!"
+        }
+    })
+    .catch(error =>  error )
 }
 patchComment({id:2},"***** Replace Comment *****")
 
@@ -100,21 +106,28 @@ patchComment({id:2},"***** Replace Comment *****")
  *
  * Don't forget to handle errors.
  */
-const putComment = async (putComment) => {
+const putComment = async (comment) => {
     const configObject = {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(putComment)
+        body: JSON.stringify(comment)
       };
       
-      return await fetch("http://localhost:3000/comments/2", configObject)
-    .then((response) => response )
-    .catch(error => `Oops we couldn't update that!`)
+      return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
+      .then((response) => {
+        if(response.ok) {
+            return response.json()
+        }else {
+            throw "Oops we couldn't update that!"
+        }
+    })
+    .catch(error => error)
 }
 putComment({
-        "body": "***** Update PUT Comment to id2 *****",
+        id: 3,
+        body: "***** Update PUT Comment to id2 *****"
     })
 
 
@@ -129,13 +142,18 @@ putComment({
  *
  * Don't forget to handle errors.
  */
-const deleteComment = async (selectedCommentID) => {
-    const configObject = {method: "delete"};
+const deleteComment = async (commentToDelete) => {
+    const configObject = {method: "DELETE"};
       
-    fetch(`http://localhost:3000/comments/${selectedCommentID}`, configObject)
-    .then((response) => response )
-    .catch(error => console.log(`Oops we couldn't delete that!`))
+   return await fetch(`http://localhost:3000/comments/${commentToDelete.id}`, configObject)
+    .then((response) => {
+        if(response.ok) {
+            return "Deleted!"
+        }else {
+            throw "That could not be deleted!"
+        }
+    })
+    .catch(error => error)
 }
-deleteComment(35)
-deleteComment(34)
-deleteComment(33)
+
+deleteComment({id:32})

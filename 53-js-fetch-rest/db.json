@@ -1,33 +1,6 @@
 {
   "comments": [
     {
-      "body": "Update this comment",
-      "id": 1
-    },
-    {
-      "id": 2
-    },
-    {
-      "body": "Comment 3",
-      "id": 3
-    },
-    {
-      "body": "Comment 4",
-      "id": 4
-    },
-    {
-      "body": "Comment 5",
-      "id": 5
-    },
-    {
-      "body": "Comment 6",
-      "id": 6
-    },
-    {
-      "body": "Comment 7",
-      "id": 7
-    },
-    {
       "body": "Comment 8",
       "id": 8
     },
@@ -112,12 +85,8 @@
       "id": 31
     },
     {
-      "body": "***** added new comment *****",
+      "body": "Comment 23",
       "id": 32
-    },
-    {
-      "body": "Comment 30",
-      "id": 33
     }
   ]
 }
