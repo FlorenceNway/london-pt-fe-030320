@@ -1,12 +1,12 @@
 // set base URL to your json server
 // Ex: http://localhost:3000
-const baseURL = "http://localhost:3000";
+const baseURL = "https://localhost:5000";
 /**
  * BEFORE YOU START:
  * 1. Run `npm install -g json-server`
  * 2. In this directory, run `json-server db.json`
  * 		to serve your back end API
- * 3. In your broser, go to http://localhost:3000/comments,
+ * 3. In your browser, go to http://localhost:3000/comments,
  * 		to view the available data
  */
 
@@ -18,7 +18,11 @@ const baseURL = "http://localhost:3000";
  *
  * Note: test this function with an URL from your json-server API
  */
-
+const getComments = async () => {
+    const data = await fetch('http://localhost:3000/comments').then(response => response.json())
+    return data
+}
+getComments()
 /**
  * Exercise 2
  *
@@ -30,6 +34,31 @@ const baseURL = "http://localhost:3000";
  *
  * Don't forget to handle errors.
  */
+  
+const postComment = async (newComment) => {
+    const configObject = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newComment)
+      };
+      
+   fetch("http://localhost:3000/comments", configObject)
+    .then((response) => {
+        if(response.ok) {
+            return response.json()
+        }else {
+            throw response
+        }
+    })
+    .catch(error => console.log('Oops something went wrong!'))
+}
+
+postComment({
+    "body": "***** added new comment *****"
+})
+
 
 /**
  * Exercise 3
@@ -45,6 +74,23 @@ const baseURL = "http://localhost:3000";
  *
  * Don't forget to handle errors.
  */
+const patchComment = async (patchComment) => {
+    const configObject = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(patchComment)
+      };
+      
+    fetch("http://localhost:3000/comments/2", configObject)
+    .then((response) => response )
+    .catch(error => console.log(`Oops we couldn't update that!`))
+}
+patchComment({
+        "body": "***** Replace Comment *****",
+})
+
 
 /**
  * Exercise 4
@@ -57,6 +103,24 @@ const baseURL = "http://localhost:3000";
  *
  * Don't forget to handle errors.
  */
+const putComment = async (putComment) => {
+    const configObject = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(putComment)
+      };
+      
+    fetch("http://localhost:3000/comments/2", configObject)
+    .then((response) => response )
+    .catch(error => console.log(`Oops we couldn't update that!`))
+}
+putComment({
+        "body": "***** Update PUT Comment to id2 *****",
+    })
+
+
 
 /**
  * Exercise 5
@@ -68,3 +132,13 @@ const baseURL = "http://localhost:3000";
  *
  * Don't forget to handle errors.
  */
+const deleteComment = async (selectedCommentID) => {
+    const configObject = {method: "delete"};
+      
+    fetch(`http://localhost:3000/comments/${selectedCommentID}`, configObject)
+    .then((response) => response )
+    .catch(error => console.log(`Oops we couldn't delete that!`))
+}
+deleteComment(35)
+deleteComment(34)
+deleteComment(33)
