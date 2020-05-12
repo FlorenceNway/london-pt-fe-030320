@@ -248,3 +248,26 @@ API.getBooks().then((books) => {
     .filter((book) => book.pages > 500)
     .map((book) => book.title);
 });
+
+//Fetch Try/Catch Exercise
+
+const PromiseFunc = async () => {
+  let counter = 3;
+
+  await new Promise((resolve,reject) => {
+    const interval = setInterval(() => {
+      console.log(counter)
+
+      if(counter === 0) {
+        clearInterval(interval);
+        reject('Reject 000000')
+      }
+      counter = -1;
+
+    },1000)
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+//should see reject message in cosole.log when counter == 0
