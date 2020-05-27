@@ -17,3 +17,9 @@
 [Async and Fetch](https://youtu.be/t046UQtqPGU)
 
 [More Fetch](https://youtu.be/Kgqh7v98fJo)
+
+[Object Oriented Intro](https://youtu.be/nIDdMOzzi7I)
+
+[Typescript Intro and More OO](https://youtu.be/hMy8jhcPOd0)
+
+[Frameworks and React Intro](https://youtu.be/q9bKR6541Wk)
