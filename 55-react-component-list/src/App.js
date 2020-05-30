@@ -16,8 +16,18 @@ const APP_TITLE = "Awesome Pet Shop";
 
 const App = () => {
   const animals = ["cat", "dog", "giraffe", "pig", "lion", "rabbit"];
+  const d = new Date()
+  let formatted_date = `${d.getMonth()+ 1 }/${d.getDate()}/${d.getFullYear()}`
 
-  return <div className="app"></div>;
+  return <div className="app">
+            <h1>{APP_TITLE}</h1>    
+            <p>{formatted_date.toString()}</p>
+            <ul>
+              {animals.map((animal) => (
+                <li key={animal}>{animal}</li>
+              ))}
+            </ul>
+        </div>;
 };
 
 export default App;
