@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import Counter from './Counter'
 /**
  * 1. Create component Counter which will have:
  * - button with class {increment}
@@ -15,7 +16,22 @@ import "./App.css";
  */
 
 function App() {
-	return <div className="App"></div>;
+
+	const [newCounter, setnewCounter] = useState([]);
+	
+	const createNewCounter = () => {setnewCounter(newCounter.concat(<Counter key={newCounter.length}/>))}
+
+	return 	(
+		<>
+			<div>
+				<button onClick={createNewCounter} className="newCounter">Add New Counter</button> 
+			</div>
+			<div className="App">
+				{newCounter}
+			</div>
+			
+		</>	
+	)
 }
 
 export default App;
