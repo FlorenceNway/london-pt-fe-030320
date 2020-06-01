@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./App.css"
 
 /**
  * Create a User List app
@@ -17,7 +18,29 @@ import React, {useState} from "react";
  */
 
 function App() {
+    const [users,setUsers] = useState([])
 
+    const getUsers = async () => await fetch("https://randomuser.me/api/").then(res => res.json()).then(response => response)
+
+    const addNewUser = async() => {
+        const randomUser = await getUsers()
+        setUsers([...users,randomUser])
+    }
+    const removeUser = (user) => setUsers(users.filter((u) => u !== user));
+
+    return <div>
+                <button onClick={() => addNewUser()} className='newUser'>Add New User</button>
+                {
+                    users.map( user => 
+                        <div>
+                            <ul>
+                                <li key={user.results[0].id.name}>{user.results[0].name.first} {user.results[0].name.last}</li>
+                                <button onClick={() => removeUser(user)} className='remove'>X</button>  
+                            </ul>   
+                        </div>    
+                    )       
+                }
+          </div>
 }
 
 export default App;
