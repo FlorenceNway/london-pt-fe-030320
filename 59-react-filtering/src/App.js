@@ -27,7 +27,7 @@ const App = () => {
 	const contactsToRender =
 		selectedContact === "All"
 			? contacts
-			: contacts.filter((contact) => contact.company.match(selectedContact));
+			: contacts.filter((contact) => contact.name.toLowerCase().match(selectedContact));
 
 	const handleChange = (e) => {
 		setSelectedContact((e.target.value).toLowerCase())

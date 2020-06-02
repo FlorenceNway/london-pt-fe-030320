@@ -9,7 +9,7 @@ describe("App", () => {
 		const component = render(<App />);
 
 		const users = await fetch(
-			"http://localhost:3000/contacts"
+			"http://localhost:3001/contacts"
 		).then((response) => response.json());
 
 		const userElements = component.container.querySelectorAll("li");
