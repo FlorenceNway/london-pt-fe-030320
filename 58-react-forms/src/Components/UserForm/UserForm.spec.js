@@ -56,7 +56,7 @@ describe("UserForm", () => {
 		const ageInput = container.querySelector(".age");
 		const genderInput = container.querySelector(".gender");
 		const form = container.querySelector("form");
-		const age = Math.random();
+		const age = Math.floor(Math.random() * 90) + 1;
 
 		fireEvent.change(firstNameInput, { target: { value: "Test" } });
 		fireEvent.change(lastNameInput, { target: { value: " User" } });
@@ -68,7 +68,7 @@ describe("UserForm", () => {
 		const usersOld = await fetch(
 			"http://localhost:3001/users"
 		).then((response) => response.json());
-
+console.log(container.innerHTML)
 		fireEvent.submit(form);
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 

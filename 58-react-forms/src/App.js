@@ -41,11 +41,9 @@ const App = () => {
     
     return (<>
                 First: <input type='text' className='first' value={inputText} onChange={handleChange}></input>
-                <h1>{inputText}</h1>
                 Second: <input type='text' className='second' value={inputText} onChange={handleChange}></input>
                 <h1>{inputText}</h1>
-                
-                    <UserForm />
+                <UserForm />
                 
             </>)
 };

@@ -38,12 +38,15 @@ const UserForm = () => {
     }
 
     const handleSubmit = (event) => {
-       event.preventDefault();
-       user.firstName && user.lastName && 
-        postUser(user);
-     
+      event.preventDefault();
+
+      const { firstName, lastName, age, gender} = user;
+       
+      firstName && lastName && age && gender && postUser(user);
+        
        setUser({
            firstName: "",
+
            lastName: "",
            age: 0,
            gender: ""
