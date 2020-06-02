@@ -66,14 +66,14 @@ describe("UserForm", () => {
 		});
 
 		const usersOld = await fetch(
-			"http://localhost:3000/users"
+			"http://localhost:3001/users"
 		).then((response) => response.json());
 
 		fireEvent.submit(form);
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 
 		const usersNew = await fetch(
-			"http://localhost:3000/users"
+			"http://localhost:3001/users"
 		).then((response) => response.json());
 
 		expect(usersNew.length).toEqual(usersOld.length + 1);
@@ -93,14 +93,14 @@ describe("UserForm", () => {
 			target: { value: "male", className: "gender" },
 		});
 		const usersOld = await fetch(
-			"http://localhost:3000/users"
+			"http://localhost:3001/users"
 		).then((response) => response.json());
 
 		fireEvent.submit(form);
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 
 		const usersNew = await fetch(
-			"http://localhost:3000/users"
+			"http://localhost:3001/users"
 		).then((response) => response.json());
 
 		expect(usersNew.length).toEqual(usersOld.length);

@@ -4,6 +4,9 @@ import UserForm from "./Components/UserForm/UserForm";
 
 /**
  * Exercise 1
+ * To run 2 servers :
+ * JSON server for database ---->  json-server -p 3001 db.json
+ * React -----> npm start
  *
  * 1. create a state for {inputText}
  * 2. create h1 which will represent current state
@@ -32,7 +35,19 @@ import UserForm from "./Components/UserForm/UserForm";
  */
 
 const App = () => {
-	
+    const [inputText, setInputText] = useState("")
+
+    const handleChange = (e) => setInputText(e.target.value);
+    
+    return (<>
+                First: <input type='text' className='first' value={inputText} onChange={handleChange}></input>
+                <h1>{inputText}</h1>
+                Second: <input type='text' className='second' value={inputText} onChange={handleChange}></input>
+                <h1>{inputText}</h1>
+                
+                    <UserForm />
+                
+            </>)
 };
 
 export default App;

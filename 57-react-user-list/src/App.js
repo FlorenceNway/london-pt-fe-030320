@@ -24,6 +24,7 @@ function App() {
 
     const addNewUser = async() => {
         const randomUser = await getUsers()
+        console.log('random',randomUser)
         setUsers([...users,randomUser])
     }
     const removeUser = (user) => setUsers(users.filter((u) => u !== user));
