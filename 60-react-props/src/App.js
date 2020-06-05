@@ -13,7 +13,15 @@ import UserCard from "./components/UserCard/UserCard";
  */
 
 const App = () => {
+    const [users , setUsers] = useState([]);
 
-};
+    users.length === 0 &&
+        fetch("http://localhost:3001/contacts").then((response) => response.json()).then(res => setUsers(res));
+    
+   
+    return  users.map( user => <UserCard user={user}/> )
+            
+            
+}; 
 
 export default App;
