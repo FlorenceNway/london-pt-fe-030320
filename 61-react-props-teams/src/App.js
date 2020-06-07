@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
+import Team from './components/Team/Team';
+import Player from './components/Team/Player/Player';
 
 /**
  * Exercise:
@@ -36,7 +38,19 @@ const App = () => {
     "Mat",
   ]);
 
-  return <div className="app"></div>;
+  
+
+  
+  return <div className="app">
+            <ul className='players'>
+                  {players.map( (player,index) => (
+                    <>
+                    <Player player={player} index={index}/>
+                    <Team />
+                    </>
+                  ))}
+            </ul>
+        </div>;
 };
 
 export default App;
