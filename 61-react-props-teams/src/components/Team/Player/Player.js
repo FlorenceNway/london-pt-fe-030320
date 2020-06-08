@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import './Player.css';
 
 /**
@@ -23,29 +23,11 @@ import './Player.css';
  */
 
 const Player = (props) => {
-  const [teamOne, setTeamOne] = useState([])
-  const [teamTwo, setTeamTwo] = useState([]) 
 
-  const clickHandler = (e) => {
-    const value = e.target.dataset.value
-    const playerName = e.target.dataset.player
-    
-    if(value === "team1") {
-      setTeamOne([...teamOne, playerName])
-    }
-    else if(value === "team2") {
-      setTeamTwo([...teamTwo, teamTwo.push(playerName)])
-    }
-    console.log(teamOne)
-    console.log(teamTwo)
-  }
-
-
-  const {player, value} = props
+  const {player} = props
+  
   return <li className='player'>
             <span>{player}</span>
-            <button onClick={clickHandler} data-value="team1" data-player={player}>Team 1</button>
-            <button onClick={clickHandler} data-value="team2" data-player={player}>Team 2</button>
           </li>
 };
 
