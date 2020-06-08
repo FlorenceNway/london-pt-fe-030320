@@ -63,6 +63,7 @@ const App = () => {
   
   return <div className="app">
             <ul className='players'>
+                  <li className='title'>All Players</li>
                   {players.map( player => (
                     <>
                       <li className='player'>
@@ -74,8 +75,8 @@ const App = () => {
                   ))} 
             </ul>
             
-            <Team players={teamOne}/>
-            <Team players={teamTwo}/>
+            <Team players={teamOne} teamName="Team One"/>
+            <Team players={teamTwo} teamName="Team Two"/>
             
         </div>;
 };

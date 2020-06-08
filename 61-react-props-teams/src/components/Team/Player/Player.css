@@ -1,7 +1,7 @@
 li {
     display: flex;
     justify-content: space-between;
-    border: 1px solid yellow;
+    border: 1px solid #9C27B0;
     padding: 15px;
     border-radius: 5px;
     margin: 15px;
@@ -9,10 +9,9 @@ li {
 }
 
 button {
-    background: #d755e4d6;
+    background: #dfc2e4cc;
     border-radius: 5px;
     padding: 5px;
-    color: white;
-    font-weight: 800;
-    width: 27%;
+    max-width: 27%;
+    width: auto;
 }
