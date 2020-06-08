@@ -63,7 +63,6 @@ const App = () => {
   
   return <div className="app">
             <ul className='players'>
-                  <li className='title'>All Players</li>
                   {players.map( player => (
                     <>
                       <li className='player'>
