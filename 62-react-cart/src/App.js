@@ -34,8 +34,55 @@ const App = () => {
   const [quantity, setQuantity] = useState(0);
   const [updateCartQty, setUpdateCartQty] = useState(0);
 
-  // const addTocart = (index, name, id) => {
-  //   console.log(index, name, id);
+  
+  const addToCart = (index, id, value) => {
+    const localStock = [...stock];
+    const localCart = [...cart];
+    localStock[index].quantity -= value;
+    const itemIndexInCart = localCart.findIndex((item) => item.id === id);
+
+    if (itemIndexInCart !== -1) {
+      localCart[itemIndexInCart].quantity += value;
+    } else {
+      localCart.push({ ...localStock[index], quantity: value });
+    }
+    setCart(localCart);
+    setStock(localStock);
+  };
+
+
+
+  return (
+    <div className="app">
+      
+      <h3>Store</h3>
+      <Store stock={stock} addToCart={addToCart} />
+
+      <h3>Cart</h3>
+      <Cart cart={cart} />
+
+    </div>
+  );
+};
+
+export default App;
+
+
+// const getUpdateCartQty = (e) => {
+//   setUpdateCartQty(e.target.value);
+// };
+
+// const updateCart = (prevQty, id) => {
+//   console.log("prevQty", prevQty);
+
+//   let newQty = parseInt(updateCartQty) + parseInt(prevQty);
+
+//   setCart(
+//     cart.map((item) => (item.id == id ? { ...item, quantity: newQty } : item))
+//   );
+// };
+
+//   console.log(index, name, id);
   //   if (cart.length === 0 || cart.indexOf(name) == -1) {
   //     setCart([
   //       ...cart,
@@ -68,65 +115,3 @@ const App = () => {
   //   console.log("Click-AddTocart cart:", cart);
   //   console.log("Click-AddTocart stock:", stock);
   // };
-
-  const addToCart = (index, id, value) => {
-    const localStock = [...stock];
-    const localCart = [...cart];
-    localStock[index].quantity -= value;
-    const itemIndexInCart = localCart.findIndex((item) => item.id === id);
-
-    if (itemIndexInCart !== -1) {
-      localCart[itemIndexInCart].quantity += value;
-    } else {
-      localCart.push({ ...localStock[index], quantity: value });
-    }
-    setCart(localCart);
-    setStock(localStock);
-  };
-  const getUpdateCartQty = (e) => {
-    setUpdateCartQty(e.target.value);
-  };
-
-  const updateCart = (prevQty, id) => {
-    console.log("prevQty", prevQty);
-
-    let newQty = parseInt(updateCartQty) + parseInt(prevQty);
-
-    setCart(
-      cart.map((item) => (item.id == id ? { ...item, quantity: newQty } : item))
-    );
-
-    console.log("from update cart:", cart);
-    console.log("from update stock:", stock);
-  };
-
-  return (
-    <div className="app">
-      <h3>Store</h3>
-
-      <Store stock={stock} addToCart={addToCart} />
-
-      <h3>Cart</h3>
-      <ul>
-        {cart.map((item) => (
-          <li>
-            <span>{item.name}</span>
-            <input
-              type="number"
-              value={item.quantity || 0}
-              min={0}
-              max={item.quantity}
-              onChange={getUpdateCartQty}
-            />
-            <button onClick={() => updateCart(item.quantity, item.id)}>
-              Update
-            </button>
-            <button className="delBtn">Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default App;
