@@ -31,10 +31,6 @@ const App = () => {
   const [stock, setStock] = useState([...initialStock]);
   const [cart, setCart] = useState([]);
 
-  const [quantity, setQuantity] = useState(0);
-  const [updateCartQty, setUpdateCartQty] = useState(0);
-
-  
   const addToCart = (index, id, value) => {
     const localStock = [...stock];
     const localCart = [...cart];
@@ -51,6 +47,44 @@ const App = () => {
   };
 
 
+  const updateCart = (index, id, value) => {
+    const localStock = stock.map(item => {
+      if(item.id !== id) {
+        return item
+      }
+      const prevItem = cart.find(item => item.id === id)
+      const diff = prevItem.quantity - value
+      return {...item, quantity: item.quantity + diff}
+    })
+
+    const localCart = cart.map(item => {
+      if(item.id !== id) {
+        return item
+      }
+      return {...item,quantity: value}
+
+    }).filter(item => item.quantity > 0)
+
+    setCart(localCart);
+    setStock(localStock);
+  }
+
+  const deleteItem = (deleted_item) => {
+    const updatedCart = cart.filter((item) => {
+      return item.id !== deleted_item.id
+    });
+
+    const localStock = stock.map(item => {
+      if(item.id !== deleted_item.id) {
+        return item
+      }
+     
+      return {...item, quantity: item.quantity + deleted_item.quantity}
+    })
+    setCart(updatedCart);
+    setStock(localStock)
+
+  }
 
   return (
     <div className="app">
@@ -59,59 +93,10 @@ const App = () => {
       <Store stock={stock} addToCart={addToCart} />
 
       <h3>Cart</h3>
-      <Cart cart={cart} />
+      <Cart cart={cart} updateCart={updateCart} deleteItem={deleteItem}/>
 
     </div>
   );
 };
 
 export default App;
-
-
-// const getUpdateCartQty = (e) => {
-//   setUpdateCartQty(e.target.value);
-// };
-
-// const updateCart = (prevQty, id) => {
-//   console.log("prevQty", prevQty);
-
-//   let newQty = parseInt(updateCartQty) + parseInt(prevQty);
-
-//   setCart(
-//     cart.map((item) => (item.id == id ? { ...item, quantity: newQty } : item))
-//   );
-// };
-
-//   console.log(index, name, id);
-  //   if (cart.length === 0 || cart.indexOf(name) == -1) {
-  //     setCart([
-  //       ...cart,
-  //       {
-  //         id: id,
-  //         name: name,
-  //         quantity: quantity,
-  //       },
-  //     ]);
-  //   } else {
-  //     let newQty = parseInt(cart[index].quantity) + parseInt(quantity);
-  //     console.log("newQty", newQty);
-  //     setCart(
-  //       cart.map((item) =>
-  //         item.id == id ? { ...item, quantity: newQty } : item
-  //       )
-  //     );
-
-  //     let updateStock =
-  //       parseInt(stock[index].quantity) - parseInt(cart[index].quantity);
-  //     console.log("updatestock", updateStock);
-  //     setStock(
-  //       stock.map((item) =>
-  //         item.id == id ? { ...item, quantity: updateStock } : item
-  //       )
-  //     );
-  //   }
-
-  //   setQuantity(0);
-  //   console.log("Click-AddTocart cart:", cart);
-  //   console.log("Click-AddTocart stock:", stock);
-  // };
