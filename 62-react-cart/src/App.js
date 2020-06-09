@@ -31,39 +31,102 @@ const App = () => {
   const [stock, setStock] = useState([...initialStock]);
   const [cart, setCart] = useState([]);
 
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(0);
+  const [updateCartQty, setUpdateCartQty] = useState(0);
 
-  const handleClick = () => {
-    console.log('click', quantity)
-    setQuantity(0)
-  }
+  // const addTocart = (index, name, id) => {
+  //   console.log(index, name, id);
+  //   if (cart.length === 0 || cart.indexOf(name) == -1) {
+  //     setCart([
+  //       ...cart,
+  //       {
+  //         id: id,
+  //         name: name,
+  //         quantity: quantity,
+  //       },
+  //     ]);
+  //   } else {
+  //     let newQty = parseInt(cart[index].quantity) + parseInt(quantity);
+  //     console.log("newQty", newQty);
+  //     setCart(
+  //       cart.map((item) =>
+  //         item.id == id ? { ...item, quantity: newQty } : item
+  //       )
+  //     );
 
-  const getQty = (e) => {
-    console.log(e.target.value)
-    setQuantity(e.target.value)
-  }
+  //     let updateStock =
+  //       parseInt(stock[index].quantity) - parseInt(cart[index].quantity);
+  //     console.log("updatestock", updateStock);
+  //     setStock(
+  //       stock.map((item) =>
+  //         item.id == id ? { ...item, quantity: updateStock } : item
+  //       )
+  //     );
+  //   }
 
-  return <div className="app">
-    <h1>Store</h1>
-    <ul>
-      {stock.map(item => (
-        <li>
-          <span>{item.name}</span>
-          <input type='number' defaultValue={0} min={0} max={item.quantity} onChange={getQty}/>
-          <button onClick={handleClick}>Add to Cart</button>
-        </li>
-      ))}
-    </ul>
-    
-    <h1>Cart</h1>
-    <li>
-        <span>Butter</span>
-        <button>Update</button>
-        <button>Delete</button>
-    </li>
+  //   setQuantity(0);
+  //   console.log("Click-AddTocart cart:", cart);
+  //   console.log("Click-AddTocart stock:", stock);
+  // };
 
+  const addToCart = (index, id, value) => {
+    const localStock = [...stock];
+    const localCart = [...cart];
+    localStock[index].quantity -= value;
+    const itemIndexInCart = localCart.findIndex((item) => item.id === id);
 
-  </div>;
+    if (itemIndexInCart !== -1) {
+      localCart[itemIndexInCart].quantity += value;
+    } else {
+      localCart.push({ ...localStock[index], quantity: value });
+    }
+    setCart(localCart);
+    setStock(localStock);
+  };
+  const getUpdateCartQty = (e) => {
+    setUpdateCartQty(e.target.value);
+  };
+
+  const updateCart = (prevQty, id) => {
+    console.log("prevQty", prevQty);
+
+    let newQty = parseInt(updateCartQty) + parseInt(prevQty);
+
+    setCart(
+      cart.map((item) => (item.id == id ? { ...item, quantity: newQty } : item))
+    );
+
+    console.log("from update cart:", cart);
+    console.log("from update stock:", stock);
+  };
+
+  return (
+    <div className="app">
+      <h3>Store</h3>
+
+      <Store stock={stock} addToCart={addToCart} />
+
+      <h3>Cart</h3>
+      <ul>
+        {cart.map((item) => (
+          <li>
+            <span>{item.name}</span>
+            <input
+              type="number"
+              value={item.quantity || 0}
+              min={0}
+              max={item.quantity}
+              onChange={getUpdateCartQty}
+            />
+            <button onClick={() => updateCart(item.quantity, item.id)}>
+              Update
+            </button>
+            <button className="delBtn">Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default App;
