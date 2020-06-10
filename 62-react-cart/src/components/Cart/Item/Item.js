@@ -10,13 +10,13 @@ const Item = ({item, updateCart}) => {
   const onChangeHandler = (event) => {
     setValue(parseInt(event.target.value))
   }
-
   const submitHandler = () => {
     updateCart(item.id, parseInt(value));
   }
   const deleteHandler = () => {
     updateCart(item.id, 0);
   }
+  
   return (
           <li>
             <span>{item.name}</span>
