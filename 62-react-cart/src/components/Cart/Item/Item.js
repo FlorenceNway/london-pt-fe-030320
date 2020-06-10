@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 
-const Item = ({item, updateCart, deleteItem, index}) => {
+const Item = ({item, updateCart}) => {
   const [value, setValue] = useState(item.quantity);
 
   useEffect(() => {
@@ -12,9 +12,11 @@ const Item = ({item, updateCart, deleteItem, index}) => {
   }
 
   const submitHandler = () => {
-    updateCart(index, item.id, parseInt(value));
+    updateCart(item.id, parseInt(value));
   }
-
+  const deleteHandler = () => {
+    updateCart(item.id, 0);
+  }
   return (
           <li>
             <span>{item.name}</span>
@@ -28,7 +30,7 @@ const Item = ({item, updateCart, deleteItem, index}) => {
             <button onClick={submitHandler} className='update'>
               Update
             </button>
-            <button className="delBtn delete" onClick={() => deleteItem(item)}>
+            <button className="delBtn delete" onClick={deleteHandler}>
               Delete
             </button>
           </li>

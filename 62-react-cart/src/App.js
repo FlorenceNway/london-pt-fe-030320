@@ -34,68 +34,51 @@ const App = () => {
   const addToCart = (index, id, value) => {
     const localStock = [...stock];
     const localCart = [...cart];
-    
-    if(value <= localStock[index].quantity && value !== 0) {
-      localStock[index].quantity -= value;
-    }
-    
-    const itemIndexInCart = localCart.findIndex((item) => item.id === id);
 
-    if (itemIndexInCart !== -1) {
-      localCart[itemIndexInCart].quantity += value;
-    } else {
-      localCart.push({ ...localStock[index], quantity: value });
+    if (value <= localStock[index].quantity && value !== 0) {
+      localStock[index].quantity -= value;
+
+      const itemIndexInCart = localCart.findIndex((item) => item.id === id);
+
+      if (itemIndexInCart !== -1) {
+        localCart[itemIndexInCart].quantity += value;
+      } else {
+        localCart.push({ ...localStock[index], quantity: value });
+      }
+
+      setCart(localCart);
+      setStock(localStock);
     }
+  };
+
+  const updateCart = (id, value) => {
+    const localStock = stock.map((item) => {
+      if (item.id !== id) {
+        return item;
+      }
+      const prevItem = cart.find((item) => item.id === id);
+      const diff = prevItem.quantity - value;
+      return { ...item, quantity: item.quantity + diff };
+    });
+
+    const localCart = cart
+      .map((item) => {
+        if (item.id !== id) {
+          return item;
+        }
+        return { ...item, quantity: value };
+      })
+      .filter((item) => item.quantity > 0);
+
     setCart(localCart);
     setStock(localStock);
   };
 
 
-  const updateCart = (index, id, value) => {
-    const localStock = stock.map(item => {
-      if(item.id !== id) {
-        return item
-      }
-      const prevItem = cart.find(item => item.id === id)
-      const diff = prevItem.quantity - value
-      return {...item, quantity: item.quantity + diff}
-    })
-
-    const localCart = cart.map(item => {
-      if(item.id !== id) {
-        return item
-      }
-      return {...item,quantity: value}
-
-    }).filter(item => item.quantity > 0)
-
-    setCart(localCart);
-    setStock(localStock);
-  }
-
-  const deleteItem = (deleted_item) => {
-    const updatedCart = cart.filter((item) => {
-      return item.id !== deleted_item.id
-    });
-
-    const localStock = stock.map(item => {
-      if(item.id !== deleted_item.id) {
-        return item
-      }
-     
-      return {...item, quantity: item.quantity + deleted_item.quantity}
-    })
-    setCart(updatedCart);
-    setStock(localStock)
-
-  }
-
   return (
     <div className="app">
-      
       <Store stock={stock} addToCart={addToCart} />
-      <Cart cart={cart} updateCart={updateCart} deleteItem={deleteItem}/>
-
+      <Cart cart={cart} updateCart={updateCart} />
     </div>
   );
 };
