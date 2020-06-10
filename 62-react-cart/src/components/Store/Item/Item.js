@@ -7,7 +7,7 @@ const Item = ({item, addToCart, index}) => {
   const onChangeHandler = (e) => {
     setValue(e.target.value)
 
-    if(e.target.value === 0 || e.target.value > item.quantity) {
+    if(e.target.value === '0' || e.target.value > item.quantity) {
       setDisable("disable")
     }else {
       setDisable("")
