@@ -25,10 +25,10 @@ const Item = ({item, updateCart, deleteItem, index}) => {
               max={item.quantity}
               onChange={onChangeHandler}
             />
-            <button onClick={submitHandler}>
+            <button onClick={submitHandler} className='update'>
               Update
             </button>
-            <button className="delBtn" onClick={() => deleteItem(item)}>
+            <button className="delBtn delete" onClick={() => deleteItem(item)}>
               Delete
             </button>
           </li>
