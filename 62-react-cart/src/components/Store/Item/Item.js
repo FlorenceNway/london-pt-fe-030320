@@ -35,7 +35,7 @@ const Item = ({item, addToCart, index}) => {
       <button onClick={submitHandler} className={disable} disabled={disable}>
         Add to Cart
       </button>
-      <span className='inStock'>In stock: {item.quantity}</span>
+      <span className='inStock label'>{item.quantity === 0? "Out of Stock": `In stock: ${item.quantity}`}</span>
     </li>
   );
 };
